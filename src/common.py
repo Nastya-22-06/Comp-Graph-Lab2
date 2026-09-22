@@ -11,7 +11,12 @@ def load_rgb(path: str | Path) -> np.ndarray:
     with Image.open(path) as image:
         return np.asarray(image.convert("RGB"), dtype=np.uint8)
 
-
+def save_rgb(array: np.ndarray, path: str | Path) -> None:
+    """Сохранить RGB-массив, предварительно ограничив значения диапазоном 0..255."""
+    destination = Path(path)
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    data = np.clip(np.rint(array), 0, 255).astype(np.uint8)
+    Image.fromarray(data, mode="RGB").save(destination)
 
 def save_gray(array: np.ndarray, path: str | Path) -> None:
     """Сохранить одноканальное изображение."""
@@ -19,3 +24,5 @@ def save_gray(array: np.ndarray, path: str | Path) -> None:
     destination.parent.mkdir(parents=True, exist_ok=True)
     data = np.clip(np.rint(array), 0, 255).astype(np.uint8)
     Image.fromarray(data, mode="L").save(destination)
+
+
