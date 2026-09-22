@@ -1,0 +1,10 @@
+[project]
+name = "COMP-GRAPH-LAB2"
+version = "1.0.0"
+description = "Лабораторная работа по цветовым пространствам"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "numpy>=1.24,<3",
+    "Pillow>=10,<13",
+    "matplotlib>=3.7,<4",
+]
